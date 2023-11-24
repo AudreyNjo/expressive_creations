@@ -1,0 +1,102 @@
+"""
+This programme will calculate the interest on an investment or loan repayment.
+
+Intro message to present choice of calculator (investment or bond).
+Request input choice of calulator.
+Set input to accept variety of capitalised options as answers. 
+Do this by setting answer to record in lower case. 
+If input is incorrect then give error message and re-request an option from the menu. 
+if investment chosen - to collect information needed for calculation 
+(deposit, interest and no. of years)
+request choice of simple or compound interest
+loop back to question if alternative answer is entered. 
+calculate using respective formulae and printing result in a sentence format.
+
+if bond chosen request information required for calculation
+calculate repayment amount and output this in a sentence. 
+following main code apply formatting and rounding of figures. 
+end
+"""
+
+import math
+#while loop created to re-request input if an input error occurs
+# and doesn't match the 2 required conditions.
+#The ASK_AGAIN variable is in upper case as as it is a constant creating a
+# True scenario for the while loop to run.
+ASK_AGAIN = 2
+while ASK_AGAIN == 2 :
+    #programme introduction with menu presented. Spaces for readability.
+    print("Welcome to our financial calculator!".upper())
+    print("")
+    print("Which of the following would you like to calculate?")
+    print("")
+    print("Investment - to calculate the amount of interest you'll earn on your investment.")
+    print("Bond       - To calculate the monthly amount you'll have to pay on a home loan. ")
+    print("")
+
+# request choice of calculator and converts answer to lower case.
+    calculator = input("Enter either 'Investment' or 'Bond' from the menu to proceed:  ").lower()
+    if calculator == "investment":
+        print("")
+        print("We will now ask you some questions to calculate your interest on investment.")
+        print("Using digits only please answer the following questions:")
+        print("_______________________________________________________________________________")
+        print("")
+        deposit = int(input("How much will you be depositing:     "))
+        interest_rate = int(input("Please enter the interest rate:      "))
+        years = int(input("For how many years will you invest:  "))
+
+        #adding while statement in case following question is not answered correctly.
+        while calculator == "investment":
+            print("")
+            print("Please enter either 'simple' or 'compound' to respond to the below question.")
+            interest = input("Would you like simple or compound interest?  ").lower()
+            print("____________________________________________________________________________")
+            print("")
+            # interest calculations for simple and compound interest options.
+            # rounded to 2 decimal places and presented as a sentence.
+            if interest == ("simple"):
+                r = interest_rate / 100
+                total = deposit *(1 + r*years)
+                total = round(total, 2)
+                print(f"You will have £{total} after {years} years.")
+                print("________________________________________________________________________")
+                break
+
+            elif interest == ("compound"):
+                r = interest_rate /100
+                total = deposit * math.pow((1 + r), years)
+                total = round(total, 2)
+                print(f"You will have £{total} after {years} years.")
+                print("________________________________________________________________________")
+                break
+            else:#will loop back to simple compound question if answer is incorrect.
+                continue
+        break
+        #This break clause stops this code block looping back to intro question.
+    # If bond is entered the monthly repayment on a loan is calculated as follows.
+    elif calculator == "bond":
+        print("")
+        print("We will now calculate your monthly repayment on a bond. \
+              \nUsing digits only please answer the following questions:")
+        print("_______________________________________________________________________________")
+        #This portion is requesting information for the calculation.
+        print("")
+        house_value = int(input("What is the value of the property:"+" "*17))
+        interest_rate = int(input("Please enter the interest rate:"+" "*20))
+        months = int(input("Over how many months do you intend to pay it back? "))
+        print("_______________________________________________________________________________")
+        #This calculates the monthly interest rate to use in main calculation.
+        #Followed by main calcuation.
+        monthly_int_rate = (interest_rate / 100)/12
+        repayment = (monthly_int_rate * house_value) / (1 - (1 + monthly_int_rate)**(- months))
+        repayment = round(repayment, 2) #rounds the float to 2 decimal points.
+        print("")
+        print(f"Your monthly repayment will be £{repayment} per month.")
+        print("_______________________________________________________________________________")
+        break
+    
+    else:
+        #This block repeats the initial intro and question if answer is not 'investment' or 'bond'.
+        print("Incorrect response! Please check your answer.")
+        continue #LF (\n)
