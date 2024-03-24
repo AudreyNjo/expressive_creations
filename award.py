@@ -1,5 +1,5 @@
 """
-start programme that determines award of triathlon
+This programme determines the award of a triathlon
 record times of 3 events in minutes 
 (swimming, cycling and running)
 calculate total time 
@@ -14,7 +14,15 @@ swimming = (int(input(" Please enter finishing time for your swimming race:")))
 cycling = (int(input(" Please enter finishing time for your cycling race:")))
 running = (int(input(" Please enter finishing time for running race:")))
 total_time = swimming + cycling + running #calculating total time of race.
+print("-" * 50)
+print("YOUR RESULTS ARE AS FOLLOWS")
+print("-" * 50)
+print(f"Swimming :\t {swimming}")
+print(f"Cycling :\t {cycling}")
+print(f"Running :\t {running}")
+print("-" * 50)
 print(f"Your total race time is : {total_time} minutes.") # printing total time of race as requested. 
+print("-" * 50)
 
 #conditional statements assigning the correct rewards based on total finishing time. 
 if total_time <= 80:
