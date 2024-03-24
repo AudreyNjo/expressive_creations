@@ -14,6 +14,7 @@ swimming = (int(input(" Please enter finishing time for your swimming race:")))
 cycling = (int(input(" Please enter finishing time for your cycling race:")))
 running = (int(input(" Please enter finishing time for running race:")))
 total_time = swimming + cycling + running #calculating total time of race.
+# Printing all results as well as the total to have a full table of results.
 print("-" * 50)
 print("YOUR RESULTS ARE AS FOLLOWS")
 print("-" * 50)
